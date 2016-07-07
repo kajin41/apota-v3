@@ -1,0 +1,69 @@
+Metadata-Version: 1.1
+Name: Flask-Auth
+Version: 0.85
+Summary: Auth extension for Flask.
+Home-page: http://bitbucket.org/Shotca/flask-auth/
+Author: Lars de Ridder
+Author-email: shotcage@gmail.com
+License: BSD
+Description: 
+        ==========
+        Flask-Auth
+        ==========
+        
+        Database-agnostic extension for Flask to support role-based authentication of
+        users.
+        
+        Links
+        -----
+        
+        * `Documentation <http://packages.python.org/Flask-Auth>`_
+        * `Repository <http://bitbucket.org/Shotca/flask-auth/>`_
+        * `Development version
+          <http://bitbucket.org/Shotca/flask-auth/get/tip.gz#egg=Flask-Auth-dev>`_
+        
+        Revisions
+        ---------
+        0.85
+        ```
+        * Updated to flask 0.8 new naming scheme of using flask.ext instead of flaskext.
+        
+        * Fixed issue with importing sqlalchemy models.
+        
+        0.8
+        ```
+        Mayor revision.
+        
+        * Not storing the entire user in the session anymore (which was convenient 
+        but bad practice) but only its __dict__.
+        
+        * As a result of the above, the get_current_user call is now gone and 
+        replaced by get_current_user_data call. Similar functionality to the original
+        call can now be obtained by doing AuthUser.load_current_user().
+        
+        * Created SQLAlchemy plug-and-play model using constructor.
+        
+        * Small bugfixes.
+        
+        0.7
+        ```
+        Added tests, permission example, bunch of bugfixes.
+        
+        0.6
+        ```
+        Added permission model, added examples, first release on PyPI.
+        
+        0.1 - 0.5
+        `````````
+        Logging in, session management, encryption, etc.
+        
+        
+Platform: any
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
