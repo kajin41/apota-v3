@@ -2,7 +2,7 @@ __author__ = 'Madness'
 
 from flask import Flask
 from flask_mongoengine import MongoEngine
-from flask_bcrypt import Bcrypt
+from flask_bcrypt import Bcrypt #todo greg install flask-bcrypt
 from flask_mail import Mail
 from itsdangerous import URLSafeTimedSerializer
 
@@ -15,9 +15,10 @@ app = Flask(__name__)
     Things to remember:
     When pushing to MASTER:
         - Make sure the servers are configured correctly below
-        - Make sure the scripts are started in drunknado.py, (transactionFinisher and fuelCrawler)
+        - Make sure the scripts are started in APO_v3.py, (transactionFinisher and fuelCrawler)
 '''
-
+APO_EMAIL = 'apo@stevens.edu'#todo add other apo emails
+WEBMASTER_EMAIL = 'zmillard@stevens.edu'#todo use db lookup instead
 # Configure
 
 # PRODUCTION
@@ -33,7 +34,7 @@ app = Flask(__name__)
 #LOCAL
 server = 'http://localhost:8000'
 DEBUG = True
-
+SECRET_ADMIN_PASS = "thisisasecret" #todo generate random pass
 SECRET_KEY = 'f^%TF5%FR5rfT56%5rf5'
 app.config["DEBUG"] = DEBUG
 app.config["SECRET_KEY"] = SECRET_KEY
@@ -51,12 +52,12 @@ app.config["MONGODB_SETTINGS"] = {
 
 #todo setup mail for stevens
 
-# app.config['MAIL_SERVER'] = 'email-smtp.us-east-1.amazonaws.com'
+# app.config['MAIL_SERVER'] = ''
 # app.config['MAIL_PORT'] = 25
 # app.config['MAIL_USE_TLS'] = True
 # app.config['MAIL_USE_SSL'] = False
-# app.config['MAIL_USERNAME'] = 'AKIAJSSEQ6O7BEJ7W5AA'
-# app.config['MAIL_PASSWORD'] = 'ArZBV7LBOrPxpIN5Q7cnA+VSpXU3f4iQ9MsZZNIiQMaA'
+# app.config['MAIL_USERNAME'] = ''
+# app.config['MAIL_PASSWORD'] = ''
 
 
 # INITIALIZE THE GOODIES
@@ -75,15 +76,7 @@ mail = Mail(app)
 #todo generate new keys
 # ---- GLOBALS ---- #
 
-# PARSE PUSH NOTIFICATIONS
-if DEBUG:
-    PARSE_MASTER = 'f3dDAZzLf9DMzrr64jwFYGDXe3M6yQh0HdtezxUL'
-    PARSE_APP_ID = 'k9ZfmNoqvfqARweaRKYJJbuPz9rPFM3aSp0o4Iye'
-    PARSE_REST_KEY = 'ms5FQ2rRUWx0hOjrJvzj7u7piyhKP5R75NWfp0ir'
-else:
-    PARSE_MASTER = 'ev3sjvFeMRUxMEBwbJxa4srcAKONY4n9BMlWbYpI'
-    PARSE_APP_ID = '6Uggb7M4Mz5Hqk2mXoSEy0CIEZwNBFx3beiA1elb'
-    PARSE_REST_KEY = '6LtRGPnNMSJ7AspVDyfCckiF7OrokknhmX8x80W6'
+
 
 # An easy place to keep our versions
 # FOR TESTING on the one server, use the /api path to get to the api, separating it from /web
