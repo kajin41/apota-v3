@@ -41,13 +41,72 @@ class USemester(db.DynamicEnbeddedDocument):
     statusAchieved = db.IntField()
     fellowshipHours = db.FloatField()
     serviceHours = db.FloatField()
-    shifts = db.ListField(db.ObjectIdField(), required=False)
+    shifts = db.EmbeddedDocumentListField(Shift, required=False)
     interviews = db.ListField(db.ObjectIdField(), required=False)
-    committees = db.ListField(db.ObjectIdField(), required=False)
-    committeesPassed = db.ListField(db.ObjectIdField(), required=False)
+    committees = db.EmbeddedDocumentListField(Committee, required=False)
+    committeesPassed = db.EmbeddedDocumentListField(Committee, required=False)
     dues = db.DateTimeField(required=False)
-    membershipPoints = db.ListField(db.ObjectIdField(), required=False)
-    leadershipReqs = db.ListField(db.ObjectIdField(), required=False)
+    membershipPoints = db.EmbeddedDocumentListField(Shift, required=False)
+    leadershipReqs = EmbeddedDocumentListField(Shift, required=False)
+
+
+class Question(db.DynamicEmbeddedDocument):
+    """
+    Questions for Events
+
+    Child of Event
+    Parent of Answer
+
+    question        - String
+    answerType      - String
+    answers         - list Answer object
+    """
+
+    question = db.StringField()
+    answerType = db.StringField()
+    answers = db.EmbeddedDocumentListField(Answer)
+
+
+class Answer(db.DynamicEmbeddedDocument):
+    """
+    Answers for Questions
+
+    Child of Question
+    Parent of none
+
+    answer          - String
+    userid          - User object
+    lastModified    - DateTime
+    """
+
+    answer = db.StringField()
+    userid = db.ObjectIdField()
+    lastModified = db.DateTimeField(default=datetime.utcnow())
+
+
+class Shift(db.DynamicEmbeddedDocument):
+    """
+    Shifts for Events
+
+    Child of Event
+    Parent of none
+
+    eventId         - Event object
+    dateStart       - DateTime
+    dateEnd         - DateTime
+    attendees       - list User object
+    hours           - list Float
+    hoursApproved   - Boolean
+    isOpen            - Boolean
+    """
+
+    eventId = db.ObjectIdField()
+    dateStart = db.DateTimeField()
+    dateEnd = db.DateTimeField()
+    attendees = db.ListField(db.ObjectIdField())
+    hours = db.ListField(db.FloatField())
+    hoursApproved = db.BooleanField(default=False)
+    isOpen = db.BooleanField(default=True)
 
 #todo add other embeded docs
 
@@ -106,8 +165,28 @@ class User(db.DynamicDocument):
     family = db.ObjectIdField()
     big = db.ObjectIdField
     littles = db.ListField(db.ObjectIdField())
-    semesters = db.ListField(db.ObjectIdField())
+    semesters = db.EmbeddedDocumentListField(USemester)
 
+
+class Event(db.DynamicDocument):
+    """
+    event base document
+    """
+    #shift info
+    name = db.StringField(required=True, max_length=255)
+    eventType = db.IntField(required=True)
+    creator = db.ObjectIdField()
+    chairs = db.ListField(db.ObjectIdField())
+    coChair = db.ListField(db.ObjectField())
+    notes = db.StringField()
+    location = db.StringField()
+    approved = db.BooleanField(default=False)
+    questions = db.EmbeddedDocumentListField(Question)
+    shifts = db.EmbeddedDocumentListField(Shift)
+
+    #data info
+    dateCreated = db.DateTimeField(default=datetime.utcnow())
+    pastOccurrence = db.ObjectIdField()
 #todo add other documents
 
 
