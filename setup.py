@@ -2,8 +2,8 @@ __author__ = 'Madness'
 
 from distutils.core import setup
 
-url = 'apo-test.apotabig.com' #test
-#url = 'apota.otg'  #production
+#url = 'apo-test.apotabig.com' #test
+url = 'apota.otg'  #production
 
 setup(
     name='APO-TA_v3',

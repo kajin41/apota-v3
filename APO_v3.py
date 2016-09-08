@@ -1,6 +1,6 @@
 __author__ = 'Madness'
 
-from APP import app as api
+from APP import app
 
 from tornado.wsgi import WSGIContainer
 from tornado.ioloop import IOLoop
@@ -12,7 +12,7 @@ class MainHandler(RequestHandler):
     def get(self):
         tornado.options.define_logging_options()
 
-tr = WSGIContainer(api)
+tr = WSGIContainer(app)
 
 application = Application(
     [
@@ -24,3 +24,4 @@ application = Application(
 if __name__ == "__main__":
     application.listen(8000)
     IOLoop.instance().start()
+

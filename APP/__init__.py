@@ -1,12 +1,10 @@
 __author__ = 'Madness'
 
 from flask import Flask
-from flask_mongoengine import MongoEngine
-from flask_bcrypt import Bcrypt #todo greg install flask-bcrypt
+from flask_bcrypt import Bcrypt
 from flask_mail import Mail
+from flask_mongoengine import MongoEngine
 from itsdangerous import URLSafeTimedSerializer
-
-from datetime import timedelta
 
 # APP
 app = Flask(__name__)
@@ -46,8 +44,8 @@ app.config['DEFAULT_PARSERS'] = [
 
 app.config["MONGODB_SETTINGS"] = {
     'db': 'APO_v3-test',
-    'username': 'Site',
-    'password': 'ebe11ud8agwa6ee'
+    'username': '',
+    'password': ''
 }
 
 #todo setup mail for stevens
@@ -93,6 +91,7 @@ except FileExistsError:
 UPLOAD_FOLDER = os.path.dirname(os.path.realpath(__file__)) + '/temp'
 TEMP_MEDIA_FOLDER = os.path.dirname(os.path.realpath(__file__)) + '/temp'
 
+from APP.views.backend import users
 
 # --- For Analytics
 
@@ -103,6 +102,7 @@ from datetime import datetime
 @app.before_request
 def init_request():
     g.start = datetime.utcnow()
+    print('start')
 
 
 @app.after_request
