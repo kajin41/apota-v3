@@ -262,7 +262,7 @@ class Semester(db.DynamicDocument):
     startDate = db.DateTimeField(required=False)
     eBoard = db.ListField(db.ReferenceField('BoardMember', name='eboard'), default=[])
     minorBoard = db.ListField(db.ReferenceField('BoardMember', name='minorBoard'), default=[])
-    nmClass = db.ReferenceField('NMClass', name='nmClass', equired=False)
+    nmClass = db.ReferenceField('NMClass', name='nmClass', required=False)
     comments = db.ListField(db.ReferenceField('Comment', name='comments'), default=[])
     committees = db.ListField(db.ReferenceField('Committee', name='committees'), default=[])
     events = db.ListField(db.ReferenceField('Event', name='events'), default=[])
