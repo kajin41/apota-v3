@@ -1,0 +1,11 @@
+bcrypt==3.1.0
+cffi==1.7.0
+Flask==0.10.1
+Flask-Bcrypt==0.7.1
+itsdangerous==0.24
+Jinja2==2.8
+MarkupSafe==0.23
+pycparser==2.14
+pygame==1.9.2a0
+six==1.10.0
+Werkzeug==0.11.4
