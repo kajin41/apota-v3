@@ -24,14 +24,16 @@ WEBMASTER_EMAIL = 'zmillard@stevens.edu'#todo use db lookup instead
 # DEBUG = False
 
 # TESTING
-# server = 'http://apo-test.apotabig.com'
-# DEBUG = True
+server = 'http://apo-test.apotabig.com'
+DEBUG = True
 
 
 
 #LOCAL
-server = 'http://localhost:8000'
-DEBUG = True
+# server = 'http://localhost:8000'
+# DEBUG = True
+
+
 SECRET_ADMIN_PASS = "thisisasecret" #todo generate random pass
 SECRET_KEY = 'f^%TF5%FR5rfT56%5rf5'
 app.config["DEBUG"] = DEBUG
