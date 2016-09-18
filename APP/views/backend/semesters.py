@@ -7,7 +7,7 @@ from APP.utility import make_gen_success
 import datetime
 
 
-@app.route('/test', methods=['GET'])
+@app.route('/', methods=['GET'])
 def root():
     return "success"
 
