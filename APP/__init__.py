@@ -93,7 +93,7 @@ except FileExistsError:
 UPLOAD_FOLDER = os.path.dirname(os.path.realpath(__file__)) + '/temp'
 TEMP_MEDIA_FOLDER = os.path.dirname(os.path.realpath(__file__)) + '/temp'
 
-import APP.views.backend
+from APP.views.backend import admin, errors, events, families, files, github, inventory, login, semesters, upload, users
 
 
 # --- For Analytics
