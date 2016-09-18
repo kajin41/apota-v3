@@ -6,6 +6,7 @@ click==6.6
 Flask==0.11.1
 Flask-API-Utils==1.0.2
 ## FIXME: could not find svn URL in dependency_links for this package:
+Flask-Async===0.11.dev0-20
 Flask-Auth==0.85
 Flask-Bcrypt==0.7.1
 Flask-Debug==0.4.3
