@@ -39,13 +39,13 @@ def test_make_semester():
         greekOrg = 0,
 
         #Apo stuff
-        nmClass = db.ReferenceField('NMClass', name='NewMemberClass'),
-        photopath = '',
-        APO_id = 1,
-        family = db.ReferenceField('Family', name='family'),
-        big = db.ReferenceField('User', name='big'),
-        littles = db.ListField(db.ReferenceField('User', name='littles')),
-        semesters = db.ListField(db.ReferenceField('USemester', name='semesters')),
+        # nmClass = db.ReferenceField('NMClass', name='NewMemberClass'),
+        # photopath = '',
+        # APO_id = 1,
+        # family = db.ReferenceField('Family', name='family'),
+        # big = db.ReferenceField('User', name='big'),
+        # littles = db.ListField(db.ReferenceField('User', name='littles')),
+        # semesters = db.ListField(db.ReferenceField('USemester', name='semesters')),
     ).save()
     print('save')
     return new_user.to_json()
