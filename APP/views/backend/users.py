@@ -7,11 +7,6 @@ from APP.utility import make_gen_success
 import datetime
 
 
-@app.route('/test', methods=['GET'])
-def root():
-    return "success"
-
-
 @app.route('/test/makeUser', methods=['GET'])
 def test_make_semester():
     print('request received')
