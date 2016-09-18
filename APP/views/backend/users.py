@@ -8,7 +8,7 @@ import datetime
 
 
 @app.route('/test/makeUser', methods=['GET'])
-def test_make_semester():
+def test_make_user():
     print('request received')
     new_user = User(
 
